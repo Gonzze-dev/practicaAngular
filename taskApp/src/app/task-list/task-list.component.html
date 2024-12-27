@@ -1,0 +1,6 @@
+<div class="taskListContainer">
+    @for (task of tasksService.get(); track task.id) 
+    {
+        <app-task-card [task]=task/>
+    }    
+</div>

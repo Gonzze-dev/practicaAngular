@@ -1,0 +1,46 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class TasksService {
+      tasks = [
+      {
+        "id": 1,
+        "name": "Comprar materiales",
+        "description": "Adquirir los materiales necesarios para el proyecto.",
+        "done": false
+      },
+      {
+        "id": 2,
+        "name": "Revisar el diseño",
+        "description": "Asegurarse de que el diseño cumple con los requisitos establecidos.",
+        "done": true
+      },
+      {
+        "id": 3,
+        "name": "Enviar propuestas",
+        "description": "Mandar las propuestas a los clientes interesados.",
+        "done": false
+      },
+      {
+        "id": 4,
+        "name": "Actualizar el informe",
+        "description": "Agregar los datos recientes al informe mensual.",
+        "done": true
+      },
+      {
+        "id": 5,
+        "name": "Planificar reunión",
+        "description": "Organizar la agenda para la reunión semanal del equipo.",
+        "done": false
+      }
+    ]
+    get()
+    {
+      return [...this.tasks]
+    }
+    constructor() { }
+
+
+}

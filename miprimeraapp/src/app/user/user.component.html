@@ -1,0 +1,9 @@
+
+@if(isLogin)
+{
+    <button (click)="logout()">Cerrar sesion</button>
+    <p>usuario logeado!</p>
+}@else{
+    <button (click)="login()">Iniciar secion</button>
+    <p>Usuario no logeado</p>
+}

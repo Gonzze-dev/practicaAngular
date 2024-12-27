@@ -1,0 +1,16 @@
+.taskDetailButton
+{
+    width: 300px;
+    border: none;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra */
+    background-color: transparent;
+    
+    text-align: start;
+    transition: transform 0.3s ease;
+}
+
+.taskDetailButton:hover
+{
+    
+    transform: scale(1.04);
+}

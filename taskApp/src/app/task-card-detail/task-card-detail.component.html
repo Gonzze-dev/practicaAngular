@@ -1,0 +1,14 @@
+<div class="container-taskCard">
+    <button class="closeCard" (click)="hiddenModal()">X</button>
+    
+    <h3>Nombre</h3>
+    <p>{{task.name}}</p>
+    <h3>Descrpcion</h3>
+    <p>{{task.description}}</p>
+
+    <button [class]="task.done ? 'doneTaskButton' : 'dontDoneTaskButton'" 
+            (click)="isDoneClick();">
+            {{task.done ? "Hecha!": "No hecho"}}
+    </button>
+
+</div>
