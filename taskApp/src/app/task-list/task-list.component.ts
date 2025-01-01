@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { TasksService } from '../tasks.service';
+import { Component, signal } from '@angular/core';
 import { TaskCardComponent } from '../task-card/task-card.component';
+import { TTask } from '../../types';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-task-list',
@@ -9,8 +10,7 @@ import { TaskCardComponent } from '../task-card/task-card.component';
   styleUrl: './task-list.component.css'
 })
 export class TaskListComponent {
+    tasks = TasksService.tasks;
 
-  constructor(public tasksService: TasksService) {}
-
-  
+    
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, output, Output } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 
 @Component({
   selector: 'app-popup',

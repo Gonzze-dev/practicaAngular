@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TaskCardDetailComponent } from './task-card-detail/task-card-detail.component';
 import { TaskListComponent } from './task-list/task-list.component';
 import { PopupComponent } from './popup/popup.component';
+import { UpdateTaskComponent } from './update-task/update-task.component';
 
 @Component({
   selector: 'app-root',

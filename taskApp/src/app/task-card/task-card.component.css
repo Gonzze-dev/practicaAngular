@@ -1,16 +1,41 @@
-.taskDetailButton
+.taskCard
 {
-    width: 300px;
+    display: flex;
+    position: relative;
+
+    height: min-content;
+    width: min-content;
+
     border: none;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra */
     background-color: transparent;
     
-    text-align: start;
+    align-items: center;
+    justify-content: space-between;
+
+
     transition: transform 0.3s ease;
 }
 
-.taskDetailButton:hover
+.taskCard:hover
 {
-    
     transform: scale(1.04);
+}
+
+.taskDetailButton
+{
+    background-color: aqua;
+    text-align: start;
+    width: 300px;
+    height: 40px;
+}
+
+.taskCard-options
+{
+    position: absolute;
+    right: 10px;
+}
+
+.popupUpdate, .popupDetail{
+    z-index: 2;
 }

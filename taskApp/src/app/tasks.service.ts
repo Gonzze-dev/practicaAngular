@@ -1,46 +1,55 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, SimpleChange, WritableSignal } from '@angular/core';
+import {data} from '../data.module'
+import { TTask } from '../types';
 
 @Injectable({
     providedIn: 'root'
 })
-export class TasksService {
-      tasks = [
-      {
-        "id": 1,
-        "name": "Comprar materiales",
-        "description": "Adquirir los materiales necesarios para el proyecto.",
-        "done": false
-      },
-      {
-        "id": 2,
-        "name": "Revisar el diseño",
-        "description": "Asegurarse de que el diseño cumple con los requisitos establecidos.",
-        "done": true
-      },
-      {
-        "id": 3,
-        "name": "Enviar propuestas",
-        "description": "Mandar las propuestas a los clientes interesados.",
-        "done": false
-      },
-      {
-        "id": 4,
-        "name": "Actualizar el informe",
-        "description": "Agregar los datos recientes al informe mensual.",
-        "done": true
-      },
-      {
-        "id": 5,
-        "name": "Planificar reunión",
-        "description": "Organizar la agenda para la reunión semanal del equipo.",
-        "done": false
-      }
-    ]
-    get()
-    {
-      return [...this.tasks]
-    }
-    constructor() { }
 
+export class TasksService {
+    static tasks:WritableSignal<TTask[]> =  signal<TTask[]>(TasksService.init())
+
+    static init(){
+      let storedTask = localStorage.getItem('tasks')
+      storedTask ?? this.saveTasks(data) 
+
+      storedTask = localStorage.getItem('tasks')
+
+      const tasks = storedTask ? JSON.parse(storedTask) : []
+
+      return tasks
+    }
+
+    static saveTasks(tasks: TTask[]){
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+
+    static reLoading(){
+      const storedTask = localStorage.getItem('tasks')
+      const tasks = storedTask ? JSON.parse(storedTask) : []
+
+      TasksService.tasks.set(tasks)
+
+    }
+
+    static updateName(id: number, name: string) {
+      const newTasks = TasksService.tasks().map(task => task.id == id ? {...task, name: name} : task)
+      TasksService.saveTasks(newTasks)
+      
+      this.reLoading()
+    }
+
+    static updateDescription(id: number, description: string){
+      const newTasks = TasksService.tasks().map(task => task.id == id ? {...task, description: description} : task)
+      TasksService.saveTasks(newTasks)
+
+      this.reLoading()
+    }
+    static updateDone(id: number, done: boolean) {
+      const newTasks = TasksService.tasks().map(task => task.id == id ? {...task, done: done} : task)
+      TasksService.saveTasks(newTasks)
+
+      this.reLoading()
+    }
 
 }
