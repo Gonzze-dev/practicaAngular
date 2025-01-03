@@ -1,0 +1,30 @@
+div
+{
+    position: relative;
+}
+input
+{
+    outline: none;
+    border: 2px solid rgb(235, 235, 235);
+    font-size: 16px;
+    padding: 10px 35px;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+img
+{
+    position: absolute;
+    top: calc(50% - 10px - 2px );
+    left: 10px;
+    box-sizing: border-box;
+    background-color: transparent;
+}
+
+input:hover
+{
+    border: 2px solid #5b9bee;
+}
+input:focus
+{
+    border: 2px solid #176cdc;
+}

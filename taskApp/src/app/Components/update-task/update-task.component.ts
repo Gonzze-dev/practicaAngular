@@ -1,10 +1,12 @@
 import { Component, input, Input } from '@angular/core';
 import { TTask } from '../../types';
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../../Service/tasks.service';
+import { InputUI } from "../../UI/input/inputUI.component";
+import { TextAreaUI } from '../../UI/text-area-ui/text-area-ui.component';
 
 @Component({
   selector: 'app-update-task',
-  imports: [],
+  imports: [InputUI, TextAreaUI],
   templateUrl: './update-task.component.html',
   styleUrl: './update-task.component.css'
 })

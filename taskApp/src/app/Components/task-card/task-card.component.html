@@ -1,0 +1,55 @@
+<div class="taskCard">
+    <button class="taskDetailButton" (click)="show()">
+        {{task.name}}
+    </button>
+    
+
+    <div class="taskCard-options">
+        <button class="BTN_edit" (click)="showModalUpdate()">
+            <img src="edit.svg" alt="" width="10px" height="10px">
+        </button>
+        
+        <button class="BTN_delete" (click)="showModalDelete()">
+            <img src="delete.svg" alt="" width="10px" height="10px">
+        </button>
+    </div>
+    
+</div>
+
+
+<app-popup 
+    class="popupUpdate"
+    [showModal]="showUpdate"
+    (onHiddenModal)="updateShowUpdate($event)"
+>
+    <app-update-task
+        [task]="task"
+    />
+</app-popup>
+
+<app-popup 
+    class="popupDetail"
+    [showModal]="showModal"
+    (onHiddenModal)="updateShow($event)"
+>
+
+    <app-task-card-detail 
+        (onHiddenModal)="updateShow($event)" 
+        [task]="task"
+    />
+    
+</app-popup>
+
+<app-popup 
+    class="popupDelete"
+    [showModal]="showDelete"
+    (onHiddenModal)="updateShowDelete($event)">
+
+    <app-delete-task
+        (onHiddenModal)="updateShowDelete($event)"
+        [id]="task.id"
+    />
+
+</app-popup>
+
+

@@ -1,0 +1,26 @@
+<div class="update-container">
+
+    <div>
+        <p><b>Nombre</b></p>
+        <app-input 
+            type="text"
+            placeholder="Nombre de la tarea"
+            [value]="name"
+            (input)="setName($event)"
+        />
+    </div>  
+    
+    <div>
+        <p><b>Descripcion</b></p>
+        <app-text-area-ui
+            placeholder="Descripcion"
+            [value]="description"
+            (input)="setDescription($event)"
+        />
+    </div>
+    
+
+    <button (click)="save()">
+        Guardar
+    </button>
+</div>

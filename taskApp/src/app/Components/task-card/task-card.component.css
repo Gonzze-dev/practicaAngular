@@ -8,8 +8,7 @@
 
     border: none;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08); /* Sombra */
-    background-color: transparent;
-    
+
     align-items: center;
     justify-content: space-between;
 
@@ -24,10 +23,17 @@
 
 .taskDetailButton
 {
-    background-color: aqua;
+    border: none;
+    background-color: white;
     text-align: start;
     width: 300px;
     height: 40px;
+}
+
+.taskDetailButton:hover
+{
+    background-color: rgb(216, 246, 218);
+    transition: ease 0.3s;
 }
 
 .taskCard-options
@@ -38,4 +44,16 @@
 
 .popupUpdate, .popupDetail{
     z-index: 2;
+}
+
+.BTN_edit, .BTN_delete
+{
+    border: none;
+    background-color: transparent;
+    transition: 0.3s ease;
+}
+
+.BTN_edit:hover, .BTN_delete:hover
+{
+    transform: scale(1.2);
 }

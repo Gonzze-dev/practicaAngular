@@ -2,7 +2,7 @@ import { Component, Input, output } from '@angular/core';
 
 import { TTask } from '../../types';
 
-import { TasksService } from '../tasks.service';
+import { TasksService } from '../../Service/tasks.service';
 
 @Component({
   selector: 'app-task-card-detail',

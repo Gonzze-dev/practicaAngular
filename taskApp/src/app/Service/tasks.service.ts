@@ -1,5 +1,5 @@
 import { Injectable, signal, SimpleChange, WritableSignal } from '@angular/core';
-import {data} from '../data.module'
+import {data} from '../../data.module'
 import { TTask } from '../types';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { TTask } from '../types';
 
 export class TasksService {
     static tasks:WritableSignal<TTask[]> =  signal<TTask[]>(TasksService.init())
+    static searchQuery = signal<string>("");
 
     static init(){
       let storedTask = localStorage.getItem('tasks')
@@ -52,4 +53,10 @@ export class TasksService {
       this.reLoading()
     }
 
+    static deleteTask(id:number) {
+      const newTasks = TasksService.tasks().filter(task => task.id != id)
+      TasksService.saveTasks(newTasks)
+      
+      this.reLoading()
+    }
 }

@@ -28,5 +28,11 @@ export const data = [
       "name": "Planificar reunión",
       "description": "Organizar la agenda para la reunión semanal del equipo.",
       "done": false
+    },
+    {
+      "id": 6,
+      "name": "Fulbito",
+      "description": "Organizar un fulbito.",
+      "done": true
     }
 ]
