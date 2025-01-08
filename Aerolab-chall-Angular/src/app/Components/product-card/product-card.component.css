@@ -1,4 +1,4 @@
-.productCardContainer
+.productCardContainer, .productCardContainer-noShop
 {
     position: relative;
     display: flex;
@@ -11,10 +11,53 @@
     background-color: white;
 }
 
+.shop
+{
+    display: none
+}
+.noShop
+{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+    background-color: #31d8fad4;
+}
+
+.productBuyInfo
+{
+    display: none;
+}
+
 .productCardContainer:hover
 {
     transform: translateY(-14px);
     box-shadow: 8px 8px 13px rgba(0, 0, 0, 0.4);
+    
+    .productBuyInfo
+    {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        z-index: 1;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        
+        background-color: #31d8fad4;
+    }
 }
 .buyBlueIcon
 {
@@ -41,25 +84,6 @@ strong
     color: rgb(131, 131, 131);
 }
 
-
-/* PRODUCT BUY INFO */
-
-.productBuyInfo
-{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 1;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    
-    background-color: #31d8fad4;
-}
 
 .costInfo
 {

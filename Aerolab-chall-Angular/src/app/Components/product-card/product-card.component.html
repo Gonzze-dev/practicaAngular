@@ -1,19 +1,19 @@
-<div class="productCardContainer" 
-    (mouseenter)="mouseHover.set(true)" 
-    (mouseleave)="mouseHover.set(false)">
+<div [className]="(400 < 200) ? 'productCardContainer-noShop' : 'productCardContainer' " >
 
-    @if (mouseHover()) {
-        <div class="productBuyInfo" >
-            <img class="buyBlueIcon" src="assets/icons/buy-white.svg" alt="" sizes="42px">
-            <div class="costInfo">
-                <img src="assets/icons/coin.svg" alt="" width="42px" height="42px">
-                <p>value</p>
-            </div>
-
-            <button> Reedem now </button>
+    <div class="productBuyInfo" >
+        <img class="buyBlueIcon" src="assets/icons/buy-white.svg" alt="" sizes="42px">
+        <div class="costInfo">
+            <img src="assets/icons/coin.svg" alt="" width="42px" height="42px">
+            <p>value</p>
         </div>
-    }
-    
+
+        <button> Reedem now </button>
+    </div>
+
+    <div [className]="(400 < 200 ) ? 'noShop' : 'shop' ">
+        <img src="assets/icons/coin.svg" alt="" width="42px" height="42px">
+        <p>You need {{399}}</p>
+    </div>
 
     <div class="productCardInfo">
         <img class="buyBlueIcon" src="assets/icons/buy-blue.svg" alt="buy-icon">
