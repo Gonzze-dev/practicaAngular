@@ -1,0 +1,70 @@
+.productCardContainer
+{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    transition: all ease 0.3s;
+    background-color: white;
+}
+
+.productCardContainer:hover
+{
+    transform: translateY(-14px);
+    box-shadow: 8px 8px 13px rgba(0, 0, 0, 0.4);
+}
+.buyBlueIcon
+{
+    position: absolute;
+    size: 42px;
+    top: 5px;
+    right: 5px;
+}
+
+.productCategory
+{
+    margin: 0px;
+    color: rgb(176, 176, 176);
+}
+
+.productImg
+{
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgb(195, 195, 195);
+}
+
+strong
+{
+    color: rgb(131, 131, 131);
+}
+
+
+/* PRODUCT BUY INFO */
+
+.productBuyInfo
+{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    
+    background-color: #31d8fad4;
+}
+
+.costInfo
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

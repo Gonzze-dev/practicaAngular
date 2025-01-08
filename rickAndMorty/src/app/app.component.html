@@ -1,0 +1,21 @@
+@let characters = arr().data ?? [];
+@let isLoading = arr().isLoading;
+
+<h1>server is running</h1>
+
+
+@if (isLoading)
+{
+  <div>
+    Cargando...
+  </div>
+}
+@else{
+  @for (character of characters; track $index) 
+  {
+    <div>
+      <img [src]="character.image" alt="" sizes="40">
+    </div>
+  }
+}
+<router-outlet />

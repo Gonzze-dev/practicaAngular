@@ -1,0 +1,29 @@
+<div class="productCardContainer" 
+    (mouseenter)="mouseHover.set(true)" 
+    (mouseleave)="mouseHover.set(false)">
+
+    @if (mouseHover()) {
+        <div class="productBuyInfo" >
+            <img class="buyBlueIcon" src="assets/icons/buy-white.svg" alt="" sizes="42px">
+            <div class="costInfo">
+                <img src="assets/icons/coin.svg" alt="" width="42px" height="42px">
+                <p>value</p>
+            </div>
+
+            <button> Reedem now </button>
+        </div>
+    }
+    
+
+    <div class="productCardInfo">
+        <img class="buyBlueIcon" src="assets/icons/buy-blue.svg" alt="buy-icon">
+        <img class="productImg"
+            src="https://coding-challenge-api.aerolab.co/images/MarshallMajorll-x2.png" 
+            alt="prodcutName image" 
+            width="252" height="182">
+
+        <p class="productCategory">category</p>
+        <strong>name</strong>
+    </div>
+    
+</div>
