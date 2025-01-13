@@ -1,0 +1,26 @@
+@let isLoading = response().isLoading;
+@let status = response().status;
+@let products = response().data.data;
+
+<div>
+    @if (isLoading) 
+    {
+        <p>Cargando...</p>
+    }
+    @else if (status !== 200)
+    {
+        <div>
+            <p>Ocurrio un error al cargar los productos</p>
+        </div>
+    }
+    @else {
+        @for (product of products; track $index) 
+        {
+            <app-product-card
+                [product]="product"
+            />
+        }
+    }
+    
+</div>
+

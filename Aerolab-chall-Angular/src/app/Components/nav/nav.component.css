@@ -1,0 +1,46 @@
+div
+{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav
+{
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.linkBar
+{
+    gap: 10px;
+}
+
+a
+{
+    color: aliceblue;
+    text-decoration: none;
+    margin: 0px;
+}
+
+.userInfo
+{
+    gap: 10px;
+}
+
+.AddMoneyButton
+{
+    position: relative;
+    cursor: pointer;
+}
+
+.AddMoneyButton p
+{
+    position: absolute;
+    top: -9px;
+    left: 0px;
+    font-size: 25px;
+    font-weight: 900;
+    color: green;
+}

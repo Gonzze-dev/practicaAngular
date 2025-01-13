@@ -11,10 +11,7 @@
     background-color: white;
 }
 
-.shop
-{
-    display: none
-}
+
 .noShop
 {
     position: absolute;
@@ -59,6 +56,7 @@
         background-color: #31d8fad4;
     }
 }
+
 .buyBlueIcon
 {
     position: absolute;
@@ -83,7 +81,6 @@ strong
 {
     color: rgb(131, 131, 131);
 }
-
 
 .costInfo
 {

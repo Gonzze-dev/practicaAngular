@@ -22,7 +22,9 @@ export class RickAndMortyService {
     let error = ""
     let data: IRickAndMorty[] = []
     let status = "200"
-  
+
+    
+    
     this.http
     .get(this.url)
     .pipe(

@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
+import { IProduct } from '../../Interface/IProduct';
 
 @Component({
   selector: 'app-product-card',
@@ -7,7 +8,6 @@ import { Component, signal } from '@angular/core';
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
-  mouseHover = signal<boolean>(false)
-
+  product = input.required<IProduct>()
 
 }

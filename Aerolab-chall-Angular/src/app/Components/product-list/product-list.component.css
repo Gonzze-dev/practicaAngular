@@ -1,0 +1,20 @@
+div
+{
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+    justify-content: center;
+
+    gap: 20px;
+}
+
+p
+{
+    margin: 30px;
+    font-size: 21;
+}
+
+@media (max-width: 1560px) {
+    div {
+        grid-template-columns: repeat(auto-fit, 300px);
+    }
+}

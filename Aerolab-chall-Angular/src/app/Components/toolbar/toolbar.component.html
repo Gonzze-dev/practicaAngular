@@ -1,0 +1,23 @@
+@let totalItemsViewed = this.productService.response().data.countItems;
+@let totalItems = this.productService.globalProducts().length;
+
+<div class="toolbarContainer">
+
+    <div>
+        <p>
+            {{totalItemsViewed}} of {{totalItems}} products
+        </p>
+    
+        <div class="filter">
+            <p>Sort by:</p>
+            <button (click)="selectFilter('mostrecent')">Most recent</button>
+            <button (click)="selectFilter('lowestprice')">Lowest price</button>
+            <button (click)="selectFilter('highestprice')">Highest price</button>
+        </div>    
+    </div>
+    
+    <div class="paginator">
+        <button (click)="prev()">prev</button>
+        <button (click)="next()">next</button>
+    </div>
+</div>
