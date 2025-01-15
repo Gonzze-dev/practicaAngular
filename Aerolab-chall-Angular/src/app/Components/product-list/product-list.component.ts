@@ -1,6 +1,6 @@
 import { Component, computed, inject, OnInit } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductsService } from '../../Service/Product/products.service';
+import { ProductsService } from '../../Service/products.service';
 import { IProduct } from '../../Interface/IProduct';
 
 import { IResponse } from '../../Interface/IResponse';
@@ -12,7 +12,7 @@ import { IPaginatedData } from '../../Interface/IPaginatedData';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
 
   productService = inject(ProductsService)
 
@@ -20,9 +20,5 @@ export class ProductListComponent implements OnInit {
     this.productService.response()
   )
 
-  ngOnInit(): void {
-    this.productService.get()
-  }
 
-  
 }

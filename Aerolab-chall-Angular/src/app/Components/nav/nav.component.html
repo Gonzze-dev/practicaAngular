@@ -1,15 +1,18 @@
+@let name = user().data.name;
+@let points = user().data.points;
+
 <div class="nav">
     <div class="linkBar">
         <img src="assets/aerolab-logo.svg" alt="" width="39" height="36">
-        <a href="/">Home</a>
-        <a href="/">History</a>
+        <a href="/home">Home</a>
+        <a href="/history">History</a>
     </div>
     
     <div class="userInfo">
-        <p>{{'Gonzalo Errandonea'}}</p>
+        <p>{{name}}</p>
         <div class="coinDisplay">
-            <p>{{300}}</p>
-            <div class="AddMoneyButton">
+            <p>{{points}}</p>
+            <div class="AddMoneyButton" (click)="addPoints()">
                 <img src="assets/icons/coin.svg" alt="Add money" width="42px" height="42px">
                 <p>+</p>
             </div>

@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ProductsService } from '../../Service/Product/products.service';
+import { ProductsService } from '../../Service/products.service';
 import { Filter } from '../../Type/Filter';
 
 @Component({
@@ -13,7 +13,7 @@ export class ToolbarComponent {
   productService = inject(ProductsService)
 
   selectFilter(option: Filter){
-    this.productService.filter({option: option})
+    this.productService.filterBy({option: option})
   }
 
   next()

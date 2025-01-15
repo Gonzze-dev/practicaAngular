@@ -1,10 +1,13 @@
+@let totalItemsViewed = this.productService.response().data.countItems;
+@let totalItems = this.productService.globalProducts().length;
+
 <div class="footer">
     <p>
-        {{10}} of {{32}} products
+        {{totalItemsViewed}} of {{totalItems}} products
     </p>
 
     <div class="paginator">
-        <button>prev</button>
-        <button>next</button>
+        <button (click)="prev()">prev</button>
+        <button (click)="next()">next</button>
     </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { ProductsService } from '../../Service/products.service';
 
 @Component({
   selector: 'app-footer',
@@ -7,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+  productService = inject(ProductsService)
 
+  next()
+  {
+    this.productService.nextPage()
+  }
+
+  prev()
+  {
+    this.productService.prevPage()
+  }
 }

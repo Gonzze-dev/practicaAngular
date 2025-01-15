@@ -1,7 +1,7 @@
-@let isPurchasable = 400 < 200;
-@let moneyNeed = product().cost;
+@let isPurchasable = userService.user().data.points >= product().cost;
+@let moneyNeed = product().cost - userService.user().data.points;
 
-<div [className]="isPurchasable ? 'productCardContainer-noShop' : 'productCardContainer' " >
+<div [className]="isPurchasable ? 'productCardContainer' : 'productCardContainer-noShop'" >
 
     <div class="productBuyInfo" >
         <img class="buyBlueIcon" src="assets/icons/buy-white.svg" alt="" sizes="42px">
@@ -10,10 +10,10 @@
             <p>{{product().cost}}</p>
         </div>
 
-        <button> Reedem now </button>
+        <button (click)="reedem()"> Reedem now </button>
     </div>
     
-    @if (isPurchasable) 
+    @if (!isPurchasable) 
     {
         <div class="noShop">
             <img src="assets/icons/coin.svg" alt="" width="42px" height="42px">

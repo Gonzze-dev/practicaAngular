@@ -1,0 +1,21 @@
+@let productReedem = history().data;
+@let isLoading = history().isLoading;
+
+<div>
+    @if (isLoading)
+    {
+        <p>Cargando...</p>
+    }
+    @else {
+        @if (productReedem.length === 0) 
+        {
+            <p>No se han canjeado productos</p>
+        }
+        @else {
+            @for (product of productReedem; track $index) 
+            {
+                {{product.name}}
+            }
+        }
+    }
+</div>

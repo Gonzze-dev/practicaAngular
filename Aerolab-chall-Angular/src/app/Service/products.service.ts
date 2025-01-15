@@ -1,14 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { getProductsUrl, token } from '../../config';
+import { getProductsUrl, header, token } from '../config';
 import { catchError, finalize, throwError } from 'rxjs';
-import { IProduct } from '../../Interface/IProduct';
-import { Suscription } from '../../Type/Suscription';
-import { IResponse } from '../../Interface/IResponse';
-import { IPaginatedData } from '../../Interface/IPaginatedData';
-import { paginateData } from '../../utils/paginateData';
-import { filterProduct } from '../../utils/filterProduct';
-import { Filter } from '../../Type/Filter';
+import { IProduct } from '../Interface/IProduct';
+import { Suscription } from '../Type/Suscription';
+import { IResponse } from '../Interface/IResponse';
+import { IPaginatedData } from '../Interface/IPaginatedData';
+import { paginateData } from '../utils/paginateData';
+import { filterProduct } from '../utils/filterProduct';
+import { Filter } from '../Type/Filter';
 
 @Injectable({
   providedIn: 'root'
@@ -30,18 +30,23 @@ export class ProductsService {
   }
   
   public response = signal<IResponse<IPaginatedData<IProduct[]>>>(structuredClone(this.initResponse))
-  public globalProducts = signal<IProduct[]>(structuredClone(this.initPaginatedData.data))
-  
+  public globalProducts = signal<IProduct[]>([])
+  public filter: Filter = 'mostrecent'
+
   http = inject(HttpClient)
+
+  constructor() {
+    if(this.globalProducts().length === 0){
+      this.get()
+    }
+
+  }
 
   get()
   {
     let data:IProduct[] = []
     let status = 200
     let error = ""
-    const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
     
     const configSub: Suscription = {
       next(res: any) {
@@ -70,10 +75,12 @@ export class ProductsService {
       this.globalProducts.set([...data])
       this.response.set(newRes)
       this.paginationProducts()
-      this.filter()        
+      this.filterBy()
+      
+      console.log(this.globalProducts())
     }
 
-    this.http.get<IProduct[]>(getProductsUrl, {headers})
+    this.http.get<IProduct[]>(getProductsUrl, {headers: header})
     .pipe(
       catchError((e) => 
         {
@@ -97,8 +104,13 @@ export class ProductsService {
     })))
   }
 
-  filter({ pageProduct = this.response().data, option = 'mostrecent' }: { pageProduct?: IPaginatedData<IProduct[]>; option?: Filter } = {})
+  filterBy({ pageProduct = this.response().data, option = this.filter}: { pageProduct?: IPaginatedData<IProduct[]>; option?: Filter } = {})
   {
+      if (option !== this.filter)
+        this.filter = (option)
+
+      console.log(option)
+
       let products = [...pageProduct.data]
 
       filterProduct[option](products)
@@ -120,7 +132,7 @@ export class ProductsService {
 
     pagProducts = paginateData(pagProducts, products)
 
-    this.filter({pageProduct: pagProducts})
+    this.filterBy({pageProduct: pagProducts})
   }
 
   prevPage()
@@ -132,6 +144,13 @@ export class ProductsService {
     
     pagProducts = paginateData(pagProducts, products)
 
-    this.filter({pageProduct: pagProducts})
+    this.filterBy({pageProduct: pagProducts})
+  }
+
+  getCost(productId: string)
+  {
+    const product = this.response().data.data.find((product) => product._id == productId)
+    const cost = product ? product.cost : 0
+    return cost
   }
 }
