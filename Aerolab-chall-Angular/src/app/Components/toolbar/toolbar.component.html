@@ -1,23 +1,50 @@
 @let totalItemsViewed = this.productService.response().data.countItems;
 @let totalItems = this.productService.globalProducts().length;
 
+@let currentPage = productService.response().data.currentPage;
+@let totalPages = productService.response().data.totalPages ?? 0;
+
 <div class="toolbarContainer">
 
     <div>
-        <p>
+        <p class="itemsViewed">
             {{totalItemsViewed}} of {{totalItems}} products
         </p>
     
         <div class="filter">
             <p>Sort by:</p>
-            <button (click)="selectFilter('mostrecent')">Most recent</button>
-            <button (click)="selectFilter('lowestprice')">Lowest price</button>
-            <button (click)="selectFilter('highestprice')">Highest price</button>
-        </div>    
+            <button app-button [active]="filter() === 'mostrecent'" (click)="selectFilter('mostrecent')">Most recent</button>
+            <button app-button [active]="filter() === 'lowestprice'" (click)="selectFilter('lowestprice')">Lowest price</button>
+            <button app-button [active]="filter() === 'highestprice'" (click)="selectFilter('highestprice')">Highest price</button>
+        </div>
     </div>
     
     <div class="paginator">
-        <button (click)="prev()">prev</button>
-        <button (click)="next()">next</button>
+        <button 
+            app-button-img 
+            [active]="currentPage > 1"
+            [imageAttributes]="{
+                src: 'assets/icons/arrow-left.svg',
+                alt: 'siguiente',
+                width: 48,
+                height: 48
+            }"
+            (imageClick)="prev()"
+        >
+        </button>
+
+        <button 
+            app-button-img 
+            [active]="currentPage < totalPages"
+            [imageAttributes]="{
+                src: 'assets/icons/arrow-right.svg',
+                alt: 'siguiente',
+                width: 48,
+                height: 48
+            }" 
+            (imageClick)="next()"
+        >
+        </button>
+        
     </div>
 </div>

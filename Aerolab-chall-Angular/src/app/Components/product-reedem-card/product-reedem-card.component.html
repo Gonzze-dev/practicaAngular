@@ -1,0 +1,20 @@
+<div class="productCardContainer" >
+
+    <div class="productInfo" >
+        <div class="costInfo">
+            <img src="assets/icons/coin.svg" alt="" width="42px" height="42px">
+            <p>{{product().cost}}</p>
+        </div>
+    </div>
+    
+    <div class="productCardInfo">
+        <img class="productImg"
+            [src]="product().img.url"
+            alt="{{product().name}}  image"
+            width="252" height="182">
+
+        <p class="productCategory">{{product().category}}</p>
+        <strong>{{product().name}}</strong>
+    </div>
+    
+</div>

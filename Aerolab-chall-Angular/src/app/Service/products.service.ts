@@ -36,9 +36,9 @@ export class ProductsService {
   http = inject(HttpClient)
 
   constructor() {
-    if(this.globalProducts().length === 0){
+    if(this.globalProducts().length === 0)
       this.get()
-    }
+    
 
   }
 
@@ -76,8 +76,7 @@ export class ProductsService {
       this.response.set(newRes)
       this.paginationProducts()
       this.filterBy()
-      
-      console.log(this.globalProducts())
+
     }
 
     this.http.get<IProduct[]>(getProductsUrl, {headers: header})
@@ -108,8 +107,6 @@ export class ProductsService {
   {
       if (option !== this.filter)
         this.filter = (option)
-
-      console.log(option)
 
       let products = [...pageProduct.data]
 

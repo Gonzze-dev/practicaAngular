@@ -1,4 +1,5 @@
 export interface IPaginatedData<T> {
+    totalPages?: number
     pageSize: number
     currentPage: number
     next: number

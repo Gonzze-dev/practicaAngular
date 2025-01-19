@@ -1,0 +1,21 @@
+:host{
+    border: none;
+    width: auto;
+    color: rgb(131, 131, 131);
+    background-color: rgb(237, 237, 237);
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 14px 34px 14px 34px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+
+:host:hover{
+    color: white;
+    background-color: #0AD4FA;
+    transition: background-color 0.3s ease;
+}
+:host.active{
+    color: #fff;
+    background-color: #0ad4fa;
+}

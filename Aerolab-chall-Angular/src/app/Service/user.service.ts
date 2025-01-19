@@ -85,8 +85,6 @@ export class UserService {
         data: data
       }
 
-      console.log(newRes)
-
       this.user.set(newRes)
     }
 
@@ -141,7 +139,7 @@ export class UserService {
   {
     const amount = 1000
 
-    if (this.user().data.points < 25000) return ;
+    if (this.user().data.points >= 25000) return ;
 
     let status = 200
     let error = ''
@@ -165,10 +163,8 @@ export class UserService {
         data: data
       }
 
-      console.log(newRes)
-
       this.points.set(newRes)
-
+      console.log(newRes)
       this.user.update((res) => ({
         ...res,
         data: {

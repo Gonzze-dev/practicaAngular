@@ -1,0 +1,15 @@
+:host.active
+{
+    background: none;
+    border: none;
+    outline: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+:host{
+    display: none;
+}

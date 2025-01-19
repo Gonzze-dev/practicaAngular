@@ -9,8 +9,8 @@
             <img src="assets/icons/coin.svg" alt="" width="42px" height="42px">
             <p>{{product().cost}}</p>
         </div>
-
-        <button (click)="reedem()"> Reedem now </button>
+        
+        <button app-button (click)="reedem()"> Reedem now </button>
     </div>
     
     @if (!isPurchasable) 

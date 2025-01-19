@@ -6,6 +6,10 @@
     "Aerolab-chall-Angular": {
       "projectType": "application",
       "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true,
+          "changeDetection": "OnPush"
+        },
         "@schematics/angular:service": {
           "skipTests": true
         }

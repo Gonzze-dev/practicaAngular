@@ -35,6 +35,7 @@ export function paginateData<T>(
     const prev = currentPage-1 <= 0 ? 0 : currentPage-1
 
     paginatedData = {
+        totalPages: totalPages,
         pageSize: sizePage,
         currentPage: currentPage,
         next: next,

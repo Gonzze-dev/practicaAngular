@@ -1,9 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { ProductsService } from '../../Service/products.service';
+import { ButtonImgComponent } from '../../UI/button-img/button-img.component';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [
+    ButtonImgComponent
+  ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
 })

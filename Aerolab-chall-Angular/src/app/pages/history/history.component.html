@@ -12,10 +12,13 @@
             <p>No se han canjeado productos</p>
         }
         @else {
-            @for (product of productReedem; track $index) 
-            {
-                {{product.name}}
-            }
+            <div class="productContainer">
+                @for (product of productReedem; track $index) 
+                {
+                    <app-product-reedem-card [product]="product"/>
+                }
+            </div>
+            
         }
     }
 </div>

@@ -6,17 +6,26 @@ div
 
 .footer
 {
-    justify-content: space-around;
-    padding-top: 2px;
-    border-top: 1px solid rgb(195, 195, 195);
-    margin-top: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid #EDEDED;
+    padding-bottom: 10px;
+    p {
+        font-family: "roboto";
+        font-weight: bold;
+        color: #838383;
+    }
 }
-
-
 
 .paginator
 {
     justify-content: center;
     align-items: center;
     gap: 10px;
+
+    button{
+        transition: transform ease 0.3s;
+    }
+    button:hover{
+        transform: scale(1.1);
+    }
 }

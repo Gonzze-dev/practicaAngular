@@ -1,13 +1,40 @@
 @let totalItemsViewed = this.productService.response().data.countItems;
 @let totalItems = this.productService.globalProducts().length;
 
+@let currentPage = productService.response().data.currentPage;
+@let totalPages = productService.response().data.totalPages ?? 0;
+
 <div class="footer">
     <p>
         {{totalItemsViewed}} of {{totalItems}} products
     </p>
 
     <div class="paginator">
-        <button (click)="prev()">prev</button>
-        <button (click)="next()">next</button>
+        <button 
+            app-button-img 
+            [active]="currentPage > 1"
+            [imageAttributes]="{
+                src: 'assets/icons/arrow-left.svg',
+                alt: 'siguiente',
+                width: 48,
+                height: 48,
+            }"
+            (imageClick)="prev()"
+        >
+        </button>
+
+        <button 
+            app-button-img 
+            [active]="currentPage < totalPages"
+            [imageAttributes]="{
+                src: 'assets/icons/arrow-right.svg',
+                alt: 'siguiente',
+                width: 48,
+                height: 48,
+            }"
+            (imageClick)="next()"
+        >
+        </button>
+        
     </div>
 </div>
