@@ -9,7 +9,6 @@ import { CategoryComponent } from './Components/category/category.component';
   selector: 'app-root',
   imports: [
     NavComponent,
-    CategoryComponent,
     RouterOutlet
   ],
   templateUrl: './app.component.html',

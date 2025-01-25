@@ -164,7 +164,7 @@ export class UserService {
       }
 
       this.points.set(newRes)
-      console.log(newRes)
+
       this.user.update((res) => ({
         ...res,
         data: {

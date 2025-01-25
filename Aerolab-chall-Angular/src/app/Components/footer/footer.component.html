@@ -1,5 +1,5 @@
 @let totalItemsViewed = this.productService.response().data.countItems;
-@let totalItems = this.productService.globalProducts().length;
+@let totalItems = this.productService.globalProducts().data.length;
 
 @let currentPage = productService.response().data.currentPage;
 @let totalPages = productService.response().data.totalPages ?? 0;
@@ -35,6 +35,6 @@
             (imageClick)="next()"
         >
         </button>
-        
+
     </div>
 </div>

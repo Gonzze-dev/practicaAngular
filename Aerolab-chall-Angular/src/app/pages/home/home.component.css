@@ -1,3 +1,9 @@
+app-category
+{
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}
+
 .home{
     display: flex;
 

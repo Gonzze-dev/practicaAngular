@@ -26,7 +26,6 @@ export class ToolbarComponent {
   next()
   {
     this.productService.nextPage()
-    console.log(this.productService.response().data)
   }
 
   prev()

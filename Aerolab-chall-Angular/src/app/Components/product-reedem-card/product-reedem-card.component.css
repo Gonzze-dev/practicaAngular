@@ -36,6 +36,8 @@
         height: 100%;
         width: 100%;
         
+        font-size: 25px;
+        color: white;
         background-color: #31d8fad4;
     }
 }

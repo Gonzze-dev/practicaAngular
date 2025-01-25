@@ -14,7 +14,7 @@
         </div>
     }
     @else {
-        @for (product of products; track $index) 
+        @for (product of products; track product._id) 
         {
             <app-product-card
                 [product]="product"

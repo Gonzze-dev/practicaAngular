@@ -2,23 +2,26 @@
 @let isLoading = history().isLoading;
 
 <div>
-    @if (isLoading)
-    {
-        <p>Cargando...</p>
-    }
-    @else {
-        @if (productReedem.length === 0) 
+    <app-category [category]="'History'"/>
+    <div>
+        @if (isLoading)
         {
-            <p>No se han canjeado productos</p>
+            <p>Cargando...</p>
         }
         @else {
-            <div class="productContainer">
-                @for (product of productReedem; track $index) 
-                {
-                    <app-product-reedem-card [product]="product"/>
-                }
-            </div>
-            
+            @if (productReedem.length === 0) 
+            {
+                <p>No se han canjeado productos</p>
+            }
+            @else {
+                <div class="productContainer">
+                    @for (product of productReedem; track product._id) 
+                    {
+                        <app-product-reedem-card [product]="product"/>
+                    }
+                </div>
+                
+            }
         }
-    }
+    </div>
 </div>

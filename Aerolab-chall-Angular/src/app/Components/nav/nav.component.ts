@@ -14,7 +14,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './nav.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NavComponent implements OnDestroy {
+export class NavComponent {
   public userService = inject(UserService)
 
   user = computed<IResponse<IUser>>(() => this.userService.user());
@@ -22,9 +22,5 @@ export class NavComponent implements OnDestroy {
   addPoints()
   {
     this.userService.addPoints()
-  }
-
-  ngOnDestroy() {
-    console.log('NavComponent se destruyó');
   }
 }

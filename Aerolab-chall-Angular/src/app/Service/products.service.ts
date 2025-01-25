@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable, linkedSignal, signal } from '@angular/core';
 import { getProductsUrl, header, token } from '../config';
-import { catchError, finalize, throwError } from 'rxjs';
+import { catchError, finalize, pipe, throwError } from 'rxjs';
 import { IProduct } from '../Interface/IProduct';
 import { Suscription } from '../Type/Suscription';
 import { IResponse } from '../Interface/IResponse';
@@ -15,31 +15,43 @@ import { Filter } from '../Type/Filter';
 })
 export class ProductsService {
 
-  private initPaginatedData = {
-    pageSize: 0,
-    currentPage: 1,
-    next: 2,
-    prev: 0,
-    countItems: 0,
-    data: []
-  }
-  private initResponse = {
+
+  public globalProducts = signal<IResponse<IProduct[]>>({
     status: 200,
     isLoading: true,
-    data: this.initPaginatedData
-  }
-  
-  public response = signal<IResponse<IPaginatedData<IProduct[]>>>(structuredClone(this.initResponse))
-  public globalProducts = signal<IProduct[]>([])
+    error: '',
+    data: []
+  })
+
   public filter: Filter = 'mostrecent'
 
+  public response = linkedSignal<IResponse<IPaginatedData<IProduct[]>>>(() => {
+    const resGlobalProduct = structuredClone(this.globalProducts())
+
+    const newRes: IResponse<IPaginatedData<IProduct[]>> = {
+      ...resGlobalProduct,
+      data: {
+        pageSize: 10,
+        currentPage: 1,
+        next: 2,
+        prev: 0,
+        data: resGlobalProduct.data
+      }
+    }
+
+    let pagData = paginateData(newRes.data, resGlobalProduct.data)
+    
+    newRes.data = pagData
+    newRes.data.data = this.filterBy({pageProduct: pagData})
+
+    return newRes
+  })
+  
   http = inject(HttpClient)
 
   constructor() {
-    if(this.globalProducts().length === 0)
+    if(this.globalProducts().data.length === 0)
       this.get()
-    
-
   }
 
   get()
@@ -59,24 +71,16 @@ export class ProductsService {
     }
 
     const configFinalize = () => {
-      const newRes: IResponse<IPaginatedData<IProduct[]>> = {
-        status: status,
-        isLoading: false,
-        error: error,
-        data: {
-          pageSize: 10,
-          currentPage: 1,
-          next: 2,
-          prev: 0,
-          data: [...data]
+      const newRes: IResponse<IProduct[]> = (
+        {
+          status: status,
+          error: error,
+          isLoading: false,
+          data: data
         }
-      }
+      )
 
-      this.globalProducts.set([...data])
-      this.response.set(newRes)
-      this.paginationProducts()
-      this.filterBy()
-
+      this.globalProducts.set(newRes)
     }
 
     this.http.get<IProduct[]>(getProductsUrl, {headers: header})
@@ -92,17 +96,7 @@ export class ProductsService {
     .subscribe(configSub)
   }
 
-  paginationProducts()
-  {
-    let products = [...this.globalProducts()]
-    let pagData = paginateData(this.response().data, products)
-
-    this.response.update(((res) => ({
-      ...res,
-      data: pagData
-    })))
-  }
-
+ 
   filterBy({ pageProduct = this.response().data, option = this.filter}: { pageProduct?: IPaginatedData<IProduct[]>; option?: Filter } = {})
   {
       if (option !== this.filter)
@@ -114,34 +108,42 @@ export class ProductsService {
       
       pageProduct.data = products
 
-      this.response.update((res) => ({
-        ...res,
-        data: pageProduct
-      }))
+      return pageProduct.data
   }
 
   nextPage()
   {
-    let products = this.globalProducts()
-    let pagProducts = this.response().data
 
+    let products = [...this.globalProducts().data]
+    let pagProducts = this.response().data
+    
     pagProducts.currentPage = pagProducts.next
 
     pagProducts = paginateData(pagProducts, products)
 
-    this.filterBy({pageProduct: pagProducts})
+    pagProducts.data = this.filterBy({pageProduct: pagProducts})
+
+    this.response.update((res) => ({
+      ...res,
+      data: pagProducts
+    }))
   }
 
   prevPage()
   {
-    let products = this.globalProducts()
-    let pagProducts = this.response().data
-
-    pagProducts.currentPage = pagProducts.prev
+    let products = [...this.globalProducts().data]
+    let pagProducts = structuredClone(this.response().data)
     
+    pagProducts.currentPage = pagProducts.prev
+
     pagProducts = paginateData(pagProducts, products)
 
-    this.filterBy({pageProduct: pagProducts})
+    pagProducts.data = this.filterBy({pageProduct: pagProducts})
+
+    this.response.update((res) => ({
+      ...res,
+      data: pagProducts
+    }))
   }
 
   getCost(productId: string)
